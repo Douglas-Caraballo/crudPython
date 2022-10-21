@@ -1,6 +1,5 @@
 from tkinter import *
-from tkinter import messagebox
-import sqlite3
+from baseDeDatos.baseDeDatos import *
 
 #---------------------------- interface ----------------------------------------------
 
@@ -11,7 +10,7 @@ barraMenu = Menu(raiz)
 raiz.config(menu=barraMenu, width=300, height=300)
 
 bbddMenu=Menu(barraMenu,tearoff=0)
-bbddMenu.add_command(label="Crear base de datos")
+bbddMenu.add_command(label="Crear base de datos",command=lambda:BaseDeDatosCrud.creacionBBDD())
 bbddMenu.add_command(label="Salir")
 
 borrarMenu=Menu(barraMenu,tearoff=0)
