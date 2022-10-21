@@ -1,5 +1,15 @@
 from tkinter import *
 from baseDeDatos.baseDeDatos import *
+from tkinter import messagebox
+
+
+#-------------------------- Funcion------------------------------------
+
+def salirDelSistema():
+    valor = messagebox.askquestion("Salir", "Desea salir de la aplicacion")
+
+    if valor=="yes":
+        raiz.destroy()
 
 #---------------------------- interface ----------------------------------------------
 
@@ -11,10 +21,10 @@ raiz.config(menu=barraMenu, width=300, height=300)
 
 bbddMenu=Menu(barraMenu,tearoff=0)
 bbddMenu.add_command(label="Crear base de datos",command=lambda:BaseDeDatosCrud.creacionBBDD())
-bbddMenu.add_command(label="Salir")
+bbddMenu.add_command(label="Salir", command=lambda:salirDelSistema())
 
 borrarMenu=Menu(barraMenu,tearoff=0)
-borrarMenu.add_command(label="Limpiar Campos")
+borrarMenu.add_command(label="Limpiar Campos", command=lambda:BaseDeDatosCrud.limpiarCampos(miID,miNombre,miApellido,miPass,miDireccion,textoComentario))
 
 ayudaMenu=Menu(barraMenu,tearoff=0)
 ayudaMenu.add_command(label="Acerca de...")
@@ -82,7 +92,7 @@ comentarioLabel.grid(row=5, column=0, sticky="e", padx=10, pady=10)
 frameBotones = Frame(raiz)
 frameBotones.pack()
 
-botonCrear = Button(frameBotones, text= "Crear")
+botonCrear = Button(frameBotones, text= "Crear", command=lambda:BaseDeDatosCrud.crear(miNombre,miApellido,miPass,miDireccion,textoComentario))
 botonCrear.grid(row=1, column=0, sticky="e", padx=10, pady=10)
 
 botonLeer = Button(frameBotones, text= "Buscar")
