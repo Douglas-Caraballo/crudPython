@@ -32,7 +32,7 @@ class BaseDeDatosCrud():
         miDireccion.set("")
         textoComentario.delete(1.0, END)
 
-    def crear(self, miNombre,miApellido,miPass,miDireccion,CuadroTexto):
+    def crear(miNombre,miApellido,miPass,miDireccion,CuadroTexto):
         miConexion = sqlite3.connect("Usuarios")
         miCursor = miConexion.cursor()
         datosusuarios = miNombre.get(),miApellido.get(),miPass.get(),miDireccion.get(),CuadroTexto.get("1.0", END)
@@ -41,4 +41,23 @@ class BaseDeDatosCrud():
         miConexion.commit()
         messagebox.showinfo("Base de datos", "Se ha realizado el registro con éxito")
 
-        self.limpiarCampos()
+    def leer(miID,miNombre,miApellido,miPass,miDireccion,textoComentario):
+        miConexion=sqlite3.connect("Usuarios")
+        miCursor = miConexion.cursor()
+
+        miCursor.execute("SELECT * FROM DATOSUSUARIOS WHERE ID="+miID.get())
+
+        elUsuario = miCursor.fetchall()
+
+        for usuario in elUsuario:
+            miID.set(usuario[0])
+            miNombre.set(usuario[1])
+            miApellido.set(usuario[2])
+            miPass.set(usuario[3])
+            miDireccion.set(usuario[4])
+            textoComentario.insert(1.0, usuario[5])
+
+        miConexion.commit()
+
+
+

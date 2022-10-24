@@ -43,6 +43,7 @@ miNombre = StringVar()
 miApellido = StringVar()
 miPass = StringVar()
 miDireccion = StringVar()
+#miComentario= StringVar()
 
 cuadroID = Entry(frameCampos, textvariable=miID)
 cuadroID.grid(row=0, column=1, padx=10, pady=10)
@@ -59,6 +60,9 @@ cuadroPass.config(show="?")
 
 cuadroDireccion = Entry(frameCampos, textvariable=miDireccion)
 cuadroDireccion.grid(row=4, column=1, padx=10, pady=10)
+
+"""cuadroComentario = Entry(frameCampos, textvariable=miComentario)
+cuadroComentario.grid(row=5,column=1,padx=10,pady=10)"""
 
 textoComentario = Text(frameCampos, width=16, height=5)
 textoComentario.grid(row=5, column=1,padx=10, pady=10)
@@ -95,7 +99,7 @@ frameBotones.pack()
 botonCrear = Button(frameBotones, text= "Crear", command=lambda:BaseDeDatosCrud.crear(miNombre,miApellido,miPass,miDireccion,textoComentario))
 botonCrear.grid(row=1, column=0, sticky="e", padx=10, pady=10)
 
-botonLeer = Button(frameBotones, text= "Buscar")
+botonLeer = Button(frameBotones, text= "Buscar", command=lambda:BaseDeDatosCrud.leer(miID,miNombre,miApellido,miPass,miDireccion,textoComentario))
 botonLeer.grid(row=1, column=1, sticky="e", padx=10, pady=10 )
 
 botonActualizar = Button(frameBotones, text= "Actualizar")
