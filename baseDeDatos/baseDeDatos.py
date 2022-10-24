@@ -59,5 +59,34 @@ class BaseDeDatosCrud():
 
         miConexion.commit()
 
+    def actualizar(miID,miNombre,miApellido,miPass,miDireccion,CuadroTexto):
+        miConexion=sqlite3.connect("Usuarios")
+        miCursor = miConexion.cursor()
+        datosUsuarios= miNombre.get(), miApellido.get(), miPass.get(), miDireccion.get(), CuadroTexto.get("1.0",END)
+
+        miCursor.execute("UPDATE DATOSUSUARIOS SET NOMBRE_USUARIO=?, APELLIDO=?, PASSWORD=?, DIRECCION=?, COMENTARIOS=?"+
+            "WHERE ID="+miID.get(), (datosUsuarios))
+        miConexion.commit()
+        messagebox.showinfo("Base de datos", "Los datos fueron actualizados con éxito")
+
+    def eliminar(miID,miNombre,miApellido,miPass,miDireccion,textoComentario):
+        miConexion=sqlite3.connect("Usuarios")
+        miCursor = miConexion.cursor()
+
+        eliminar=messagebox.askquestion("Base de datos", "Desea eliminar el registro, no se va a poder recuperar")
+
+        if eliminar=="yes":
+            miCursor.execute("DELETE FROM DATOSUSUARIOS WHERE ID="+miID.get())
+            miConexion.commit()
+
+            messagebox.showinfo("Base de datos", "El registro fue eliminado con éxito")
+            miID.set("")
+            miNombre.set("")
+            miApellido.set("")
+            miPass.set("")
+            miDireccion.set("")
+            textoComentario.delete(1.0, END)
+
+
 
 

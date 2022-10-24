@@ -102,10 +102,10 @@ botonCrear.grid(row=1, column=0, sticky="e", padx=10, pady=10)
 botonLeer = Button(frameBotones, text= "Buscar", command=lambda:BaseDeDatosCrud.leer(miID,miNombre,miApellido,miPass,miDireccion,textoComentario))
 botonLeer.grid(row=1, column=1, sticky="e", padx=10, pady=10 )
 
-botonActualizar = Button(frameBotones, text= "Actualizar")
+botonActualizar = Button(frameBotones, text= "Actualizar", command=lambda:BaseDeDatosCrud.actualizar(miID,miNombre,miApellido,miPass,miDireccion,textoComentario))
 botonActualizar.grid(row=1, column=2, sticky="e", padx=10, pady=10)
 
-botonEliminar = Button(frameBotones, text="Eliminar")
+botonEliminar = Button(frameBotones, text="Eliminar", command=lambda:BaseDeDatosCrud.eliminar(miID,miNombre,miApellido,miPass,miDireccion,textoComentario))
 botonEliminar.grid(row=1, column=4, sticky="e", padx=10, pady=10)
 
 raiz.mainloop()
