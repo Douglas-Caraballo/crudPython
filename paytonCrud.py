@@ -1,3 +1,4 @@
+from cProfile import label
 from tkinter import *
 from baseDeDatos.baseDeDatos import *
 from tkinter import messagebox
@@ -10,6 +11,10 @@ def salirDelSistema():
 
     if valor=="yes":
         raiz.destroy()
+
+def ayuda():
+
+    messagebox.showinfo("Ayuda", "Sistema de registro version 1.0")
 
 #---------------------------- interface ----------------------------------------------
 
@@ -27,7 +32,7 @@ borrarMenu=Menu(barraMenu,tearoff=0)
 borrarMenu.add_command(label="Limpiar Campos", command=lambda:BaseDeDatosCrud.limpiarCampos(miID,miNombre,miApellido,miPass,miDireccion,textoComentario))
 
 ayudaMenu=Menu(barraMenu,tearoff=0)
-ayudaMenu.add_command(label="Acerca de...")
+ayudaMenu.add_command(label="Acerca de...", command=ayuda)
 
 barraMenu.add_cascade(label="BBDD", menu=bbddMenu)
 barraMenu.add_cascade(label="Limpiar", menu=borrarMenu)
